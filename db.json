@@ -1,0 +1,474 @@
+{
+  "users": [
+    {
+      "id": "1066",
+      "name": "qwert",
+      "email": "qwert@gmail.com",
+      "phone": "1234567890",
+      "password": "123456"
+    },
+    {
+      "id": "ffb1",
+      "name": "muflih",
+      "email": "muflih@gmail.com",
+      "phone": "1234567890",
+      "password": "123456"
+    }
+  ],
+  "cart": [],
+  "wishlist": [
+    {
+      "id": "5c5d",
+      "userId": "ffb1",
+      "productId": "3",
+      "title": "Mass Gainer",
+      "image": "/products/download.jpg"
+    },
+    {
+      "id": "b985",
+      "userId": "ffb1",
+      "productId": "1",
+      "title": "Gold Standard Whey Protein",
+      "image": "/products/shopping.webp"
+    },
+    {
+      "id": "6fcb",
+      "productId": "2",
+      "title": "Creatine Monohydrate",
+      "image": "/products/shoppin.webp"
+    },
+    {
+      "id": "6c8e",
+      "userId": "1066",
+      "productId": "1",
+      "title": "Gold Standard Whey Protein",
+      "image": "/products/shopping.webp"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "Gold Standard Whey Protein",
+      "image": "/products/shopping.webp",
+      "description": "24g of high-quality whey protein per serving to support muscle growth, faster recovery, and strength gains. Ideal for post-workout nutrition and daily protein intake.",
+      "weights": [
+        {
+          "weight": "500g",
+          "price": 1899
+        },
+        {
+          "weight": "1kg",
+          "price": 3299
+        },
+        {
+          "weight": "2kg",
+          "price": 5999
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Creatine Monohydrate",
+      "image": "/products/shoppin.webp",
+      "description": "Clinically proven creatine monohydrate that enhances strength, power output, and workout performance. Helps increase muscle mass and training intensity.",
+      "weights": [
+        {
+          "weight": "100g",
+          "price": 899
+        },
+        {
+          "weight": "250g",
+          "price": 1599
+        },
+        {
+          "weight": "500g",
+          "price": 2799
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Mass Gainer",
+      "image": "/products/download.jpg",
+      "description": "High-calorie mass gainer formulated with quality carbs and proteins to support rapid weight gain, muscle size increase, and improved recovery.",
+      "weights": [
+        {
+          "weight": "1kg",
+          "price": 2499
+        },
+        {
+          "weight": "3kg",
+          "price": 5499
+        },
+        {
+          "weight": "5kg",
+          "price": 8499
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Multivitamin",
+      "image": "/products/downlo.jpg",
+      "description": "Complete multivitamin blend enriched with essential vitamins and minerals to support immunity, energy levels, metabolism, and overall daily health.",
+      "weights": [
+        {
+          "weight": "60 Tablets",
+          "price": 1099
+        },
+        {
+          "weight": "120 Tablets",
+          "price": 1899
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "L-Carnitine",
+      "image": "/products/downl.jpg",
+      "description": "Advanced L-Carnitine formula that helps convert fat into energy, improves endurance, and supports weight management during intense workouts.",
+      "weights": [
+        {
+          "weight": "250ml",
+          "price": 1599
+        },
+        {
+          "weight": "500ml",
+          "price": 2799
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "ISO Whey Protein",
+      "image": "/products/downloa.jpg",
+      "description": "Ultra-pure whey isolate with minimal fat and carbs, designed for lean muscle development, faster absorption, and superior protein quality.",
+      "weights": [
+        {
+          "weight": "500g",
+          "price": 2199
+        },
+        {
+          "weight": "1kg",
+          "price": 3499
+        },
+        {
+          "weight": "2kg",
+          "price": 6499
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "BCAA Energy Drink",
+      "image": "/products/a.jpg",
+      "description": "Powerful blend of BCAAs that supports muscle recovery, reduces workout fatigue, and improves endurance during long and intense training sessions.",
+      "weights": [
+        {
+          "weight": "250g",
+          "price": 1499
+        },
+        {
+          "weight": "500g",
+          "price": 2699
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Pre Workout Booster",
+      "image": "/products/B.webp",
+      "description": "Powerful blend of BCAAs that supports muscle recovery, reduces workout fatigue, and improves endurance during long and intense training sessions.",
+      "weights": [
+        {
+          "weight": "250g",
+          "price": 1799
+        },
+        {
+          "weight": "400g",
+          "price": 2999
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Fish Oil Omega 3",
+      "image": "/products/C.webp",
+      "description": "Premium omega-3 fatty acids that support heart health, joint mobility, brain function, and reduce inflammation for active lifestyles.",
+      "weights": [
+        {
+          "weight": "60 Capsules",
+          "price": 999
+        },
+        {
+          "weight": "120 Capsules",
+          "price": 1799
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "ZMA Supplement",
+      "image": "/products/D.webp",
+      "description": "ZMA formula enriched with zinc, magnesium, and vitamin B6 to improve sleep quality, muscle recovery, and natural testosterone support.",
+      "weights": [
+        {
+          "weight": "90 Capsules",
+          "price": 1299
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Peanut Butter (Natural)",
+      "image": "/products/E.jpg",
+      "description": "100% natural peanut butter packed with protein and healthy fats. Ideal for clean bulking, muscle recovery, and a nutritious daily snack.",
+      "weights": [
+        {
+          "weight": "500g",
+          "price": 599
+        },
+        {
+          "weight": "1kg",
+          "price": 1099
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Glutamine Powder",
+      "image": "/products/F.jpg",
+      "description": "High-quality glutamine supplement that aids muscle recovery, reduces soreness, and supports immune health after intense training.",
+      "weights": [
+        {
+          "weight": "250g",
+          "price": 1399
+        },
+        {
+          "weight": "500g",
+          "price": 2499
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Casein Protein Powder",
+      "image": "/products/H.webp",
+      "description": "Slow-digesting casein protein that provides sustained amino acid release, making it ideal for overnight muscle recovery and long fasting periods.",
+      "weights": [
+        {
+          "weight": "500g",
+          "price": 2299
+        },
+        {
+          "weight": "1kg",
+          "price": 4199
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Electrolyte Hydration Powder",
+      "image": "/products/I.jpg",
+      "description": "Electrolyte-rich hydration formula that helps prevent dehydration, supports muscle function, and maintains stamina during workouts.",
+      "weights": [
+        {
+          "weight": "250g",
+          "price": 899
+        },
+        {
+          "weight": "500g",
+          "price": 1599
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Ashwagandha Capsules",
+      "image": "/products/J.jpg",
+      "description": "Natural adaptogen supplement that helps reduce stress, improve strength, boost recovery, and support overall physical performance.",
+      "weights": [
+        {
+          "weight": "60 Capsules",
+          "price": 799
+        },
+        {
+          "weight": "120 Capsules",
+          "price": 1399
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "Protein Energy Bars",
+      "image": "/products/K.jpg",
+      "description": "Delicious and convenient protein energy bars that provide quick nutrition, muscle recovery support, and sustained energy on the go.",
+      "weights": [
+        {
+          "weight": "6 Bars Pack",
+          "price": 699
+        },
+        {
+          "weight": "12 Bars Pack",
+          "price": 1299
+        }
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "id": "1d12",
+      "userId": "1066",
+      "items": [
+        {
+          "id": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        },
+        {
+          "id": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 1
+        }
+      ],
+      "total": 2798,
+      "customer": {
+        "name": "qwert",
+        "phone": "1234567890",
+        "address": "asdfghjkl"
+      },
+      "status": "Order Placed",
+      "createdAt": "2026-01-28T09:27:37.360Z"
+    },
+    {
+      "id": "1a23",
+      "userId": "1066",
+      "items": [
+        {
+          "id": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        }
+      ],
+      "total": 1899,
+      "customer": {
+        "name": "qwert",
+        "phone": "1234567890",
+        "address": "qwertyuiop"
+      },
+      "status": "Order Placed",
+      "createdAt": "2026-01-28T10:05:51.198Z"
+    },
+    {
+      "id": "14ac",
+      "userId": "ffb1",
+      "customer": {
+        "name": "wertyuio",
+        "phone": "1234567890",
+        "address": "sdfghjkl"
+      },
+      "items": [
+        {
+          "id": "7275",
+          "userId": "ffb1",
+          "productId": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        },
+        {
+          "id": "012f",
+          "userId": "ffb1",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 1
+        }
+      ],
+      "total": 2798,
+      "status": "Order Placed",
+      "createdAt": "2026-01-31T06:05:20.173Z"
+    },
+    {
+      "id": "9a3a",
+      "userId": "ffb1",
+      "customer": {
+        "name": "wertyui",
+        "phone": "1234567890",
+        "address": "h"
+      },
+      "items": [
+        {
+          "id": "5c67",
+          "userId": "ffb1",
+          "productId": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        },
+        {
+          "id": "b236",
+          "userId": "ffb1",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 1
+        }
+      ],
+      "total": 2798,
+      "status": "Order Placed",
+      "createdAt": "2026-01-31T06:05:51.818Z"
+    },
+    {
+      "id": "f9c2",
+      "userId": "1066",
+      "customer": {
+        "name": "qwerty",
+        "phone": "1234567890",
+        "address": "qwertyuio"
+      },
+      "items": [
+        {
+          "id": "5ad5",
+          "userId": "1066",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 1
+        },
+        {
+          "id": "86e4",
+          "userId": "1066",
+          "productId": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        }
+      ],
+      "total": 2798,
+      "status": "Order Placed",
+      "createdAt": "2026-01-31T09:08:50.685Z"
+    }
+  ]
+}
