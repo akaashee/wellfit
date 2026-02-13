@@ -69,7 +69,7 @@ const Checkout = () => {
       }
 
       const orderId = await placeOrder(customer, paymentMethod)
-      navigate(`/order/${orderId}`)
+      navigate(`/payment-success`)
     } catch {
       alert("Payment failed")
     } finally {

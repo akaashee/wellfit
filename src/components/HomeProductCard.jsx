@@ -50,7 +50,7 @@ const HomeProductCard = ({ product }) => {
           onClick={handleAddToCart}
           className="border py-2 rounded-lg mt-4"
         >
-          Add to Cart
+          View Details
         </button>
       </div>
     </div>

@@ -6,10 +6,6 @@ const PaymentSuccess = () => {
   const navigate = useNavigate()
   const { setCart } = useContext(StoreContext)
 
-  useEffect(() => {
-    // clear cart after payment
-    setCart([])
-  }, [])
 
   return (
     <div className="h-[70vh] flex flex-col justify-center items-center">

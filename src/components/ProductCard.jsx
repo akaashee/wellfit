@@ -1,9 +1,11 @@
 import { FaHeart } from "react-icons/fa"
 import {  useStore } from "../context/StoreContext"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate()
+  const {pathname} = useLocation()
+  
   const { addToCart, toggleWishlist, wishlist } = useStore()
 
   console.log(wishlist);
@@ -74,7 +76,7 @@ const ProductCard = ({ product }) => {
 
       {/* ADD TO CART */}
       <button
-        onClick={() => addToCart(product, defaultWeight)}
+        onClick={() => pathname === "/products" ? addToCart(product, defaultWeight) : navigate(`/products/${product.id}`)}
         className="
           absolute
           bottom-4
@@ -90,7 +92,7 @@ const ProductCard = ({ product }) => {
           hover:text-white
         "
       >
-        Add to Cart
+        {pathname === "/products" ? "Add to Cart" : "View Details"}
       </button>
     </div>
   )

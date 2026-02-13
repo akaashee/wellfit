@@ -1,9 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom"
 import { useContext } from "react"
 
+/* USER COMPONENTS */
 import Navbar from "./components/Navbar"
 import Toast from "./components/Toast"
-import { ToastContainer } from 'react-toastify';
 import Home from "./pages/Home"
 import Products from "./pages/Products"
 import ProductDetails from "./pages/ProductDetails"
@@ -15,52 +15,75 @@ import OrderSuccess from "./pages/OrderSuccess"
 import Wishlist from "./pages/Whishlist"
 import Profile from "./pages/Profile"
 import OrderDetails from "./pages/OrderDetails"
-import { StoreContext } from "./context/StoreContext"
 import Footer from "./pages/Footer"
+import PaymentSuccess from "./pages/PaymentSuccess"
 
-// PRIVATE ROUTE
+/* ADMIN COMPONENTS */
+import AdminLogin from "./admin/pages/AdminLogin"
+import Dashboard from "./admin/pages/Dashboard"
+import AdminLayout from "./admin/components/AdminLayout"
+import ProductsAdmin from "./admin/pages/Products"
+import AddProduct from "./admin/pages/AddProduct"
+import Orders from "./admin/pages/Orders"
+import AdminRoute from "./admin/routes/AdminRouter"
+
+/* CONTEXT */
+import { StoreContext } from "./context/StoreContext"
+import { ToastContainer } from "react-toastify"
+import EditProduct from "./admin/pages/EditProduct"
+import ProductView from "./admin/pages/ProductView"
+import SalesAnalytics from "./admin/pages/SalesAnalytics"
+import Users from "./admin/pages/Users"
+import OrderDetailsAdmin from "./admin/pages/OrderDetailsAdmin"
+import { useAuth } from "./context/AuthContext"
+
+/* USER PRIVATE ROUTE */
 const PrivateRoute = ({ children }) => {
   const isAuth = localStorage.getItem("isAuth")
   return isAuth ? children : <Navigate to="/login" />
 }
 
+const PublicRoute = ({ children }) => {
+  const isAuth = localStorage.getItem("isAuth")
+  return !isAuth ? children : <Navigate to="/" />
+}
+
 function App() {
   const { toastMessage } = useContext(StoreContext)
+  const location = useLocation()
+
+  console.log(location);
+  
+
+  // 👉 Hide Navbar & Footer for Admin pages
+  const isAdminRoute = location.pathname.startsWith("/admin")
+  const navigate = useNavigate()
+
+  const { user } = useAuth()
+
+  if (user && user?.role === "admin" && !isAdminRoute) navigate('/admin')
 
   return (
     <>
       {/* TOAST */}
       <Toast />
+      <ToastContainer />
 
-      {/* NAVBAR */}
-      <Navbar />
+      {/* NAVBAR (USER ONLY) */}
+      {!isAdminRoute && <Navbar />}
 
       <main>
         <Routes>
-          {/* PUBLIC ROUTES */}
+          {/* ================= PUBLIC ROUTES ================= */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          {/* PROTECTED ROUTES */}
-
+          {/* ================= USER ROUTES ================= */}
           <Route path="/" element={<Home />} />
-          <Route
-            path="/products"
-            element={
-              <PrivateRoute>
-                <Products />
-              </PrivateRoute>
-            }
-          />
 
-          <Route
-            path="/products/:id"
-            element={
-              <PrivateRoute>
-                <ProductDetails />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/products" element={<Products />} />
+
+          <Route path="/products/:id" element={<ProductDetails />} />
 
           <Route
             path="/cart"
@@ -107,8 +130,6 @@ function App() {
             }
           />
 
-          {/* FALLBACK */}
-          <Route path="*" element={<Navigate to="/" />} />
           <Route
             path="/order/:id"
             element={
@@ -118,12 +139,44 @@ function App() {
             }
           />
 
+          <Route
+            path="/payment-success"
+            element={
+              <PrivateRoute>
+                <PaymentSuccess />
+              </PrivateRoute>
+            }
+          />
 
+          {/* ================= ADMIN ROUTES ================= */}
+          <Route path="/admin/login" element={<PublicRoute><AdminLogin /></PublicRoute>} />
+
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="products" element={<ProductsAdmin />} />
+            <Route path="products/add" element={<AddProduct />} />
+              <Route path="products/view/:id" element={<ProductView />} />
+            <Route path="products/edit/:id" element={<EditProduct />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="orders/:id" element={<OrderDetailsAdmin />} />
+            <Route path="users" element={<Users />} />
+            <Route path="sales-analytics" element={<SalesAnalytics />} />
+          </Route>
+
+          {/* ================= FALLBACK ================= */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
 
-      <ToastContainer />
-      <Footer />
+      {/* FOOTER (USER ONLY) */}
+      {!isAdminRoute && <Footer />}
     </>
   )
 }

@@ -5,32 +5,39 @@
       "name": "qwert",
       "email": "qwert@gmail.com",
       "phone": "1234567890",
-      "password": "123456"
+      "password": "123456",
+      "role": "user"
     },
     {
       "id": "ffb1",
       "name": "muflih",
       "email": "muflih@gmail.com",
       "phone": "1234567890",
-      "password": "123456"
+      "password": "123456",
+      "role": "user"
+    },
+    {
+      "id": "510c",
+      "name": "jhon",
+      "email": "jhon@gmail.com",
+      "phone": "1234567890",
+      "password": "123456",
+      "role": "admin"
     }
   ],
-  "cart": [],
-  "wishlist": [
+  "cart": [
     {
-      "id": "5c5d",
+      "id": "0d95",
       "userId": "ffb1",
       "productId": "3",
       "title": "Mass Gainer",
-      "image": "/products/download.jpg"
-    },
-    {
-      "id": "b985",
-      "userId": "ffb1",
-      "productId": "1",
-      "title": "Gold Standard Whey Protein",
-      "image": "/products/shopping.webp"
-    },
+      "image": "/products/download.jpg",
+      "weight": "1kg",
+      "price": 2499,
+      "qty": 1
+    }
+  ],
+  "wishlist": [
     {
       "id": "6fcb",
       "productId": "2",
@@ -38,11 +45,18 @@
       "image": "/products/shoppin.webp"
     },
     {
-      "id": "6c8e",
-      "userId": "1066",
-      "productId": "1",
-      "title": "Gold Standard Whey Protein",
-      "image": "/products/shopping.webp"
+      "id": "b347",
+      "userId": "ffb1",
+      "productId": "3",
+      "title": "Mass Gainer",
+      "image": "/products/download.jpg"
+    },
+    {
+      "id": "f601",
+      "userId": "ffb1",
+      "productId": "4",
+      "title": "Multivitamin",
+      "image": "/products/downlo.jpg"
     }
   ],
   "products": [
@@ -50,19 +64,22 @@
       "id": "1",
       "title": "Gold Standard Whey Protein",
       "image": "/products/shopping.webp",
-      "description": "24g of high-quality whey protein per serving to support muscle growth, faster recovery, and strength gains. Ideal for post-workout nutrition and daily protein intake.",
+      "description": "24g whey protein per serving. Supports muscle growth and recovery.",
       "weights": [
         {
           "weight": "500g",
-          "price": 1899
+          "price": 1899,
+          "stock": 10
         },
         {
           "weight": "1kg",
-          "price": 3299
+          "price": 3299,
+          "stock": 10
         },
         {
           "weight": "2kg",
-          "price": 5999
+          "price": 5999,
+          "stock": 10
         }
       ]
     },
@@ -74,15 +91,18 @@
       "weights": [
         {
           "weight": "100g",
-          "price": 899
+          "price": 899,
+          "stock": 10
         },
         {
           "weight": "250g",
-          "price": 1599
+          "price": 1599,
+          "stock": 10
         },
         {
           "weight": "500g",
-          "price": 2799
+          "price": 2799,
+          "stock": 10
         }
       ]
     },
@@ -94,15 +114,18 @@
       "weights": [
         {
           "weight": "1kg",
-          "price": 2499
+          "price": 2499,
+          "stock": 10
         },
         {
           "weight": "3kg",
-          "price": 5499
+          "price": 5499,
+          "stock": 10
         },
         {
           "weight": "5kg",
-          "price": 8499
+          "price": 8499,
+          "stock": 10
         }
       ]
     },
@@ -114,11 +137,13 @@
       "weights": [
         {
           "weight": "60 Tablets",
-          "price": 1099
+          "price": 1099,
+          "stock": 10
         },
         {
           "weight": "120 Tablets",
-          "price": 1899
+          "price": 1899,
+          "stock": 10
         }
       ]
     },
@@ -130,11 +155,13 @@
       "weights": [
         {
           "weight": "250ml",
-          "price": 1599
+          "price": 1599,
+          "stock": 10
         },
         {
           "weight": "500ml",
-          "price": 2799
+          "price": 2799,
+          "stock": 10
         }
       ]
     },
@@ -146,15 +173,18 @@
       "weights": [
         {
           "weight": "500g",
-          "price": 2199
+          "price": 2199,
+          "stock": 10
         },
         {
           "weight": "1kg",
-          "price": 3499
+          "price": 3499,
+          "stock": 10
         },
         {
           "weight": "2kg",
-          "price": 6499
+          "price": 6499,
+          "stock": 10
         }
       ]
     },
@@ -166,11 +196,13 @@
       "weights": [
         {
           "weight": "250g",
-          "price": 1499
+          "price": 1499,
+          "stock": 10
         },
         {
           "weight": "500g",
-          "price": 2699
+          "price": 2699,
+          "stock": 10
         }
       ]
     },
@@ -182,11 +214,13 @@
       "weights": [
         {
           "weight": "250g",
-          "price": 1799
+          "price": 1799,
+          "stock": 10
         },
         {
           "weight": "400g",
-          "price": 2999
+          "price": 2999,
+          "stock": 10
         }
       ]
     },
@@ -198,11 +232,13 @@
       "weights": [
         {
           "weight": "60 Capsules",
-          "price": 999
+          "price": 999,
+          "stock": 10
         },
         {
           "weight": "120 Capsules",
-          "price": 1799
+          "price": 1799,
+          "stock": 10
         }
       ]
     },
@@ -214,7 +250,8 @@
       "weights": [
         {
           "weight": "90 Capsules",
-          "price": 1299
+          "price": 1299,
+          "stock": 10
         }
       ]
     },
@@ -226,11 +263,13 @@
       "weights": [
         {
           "weight": "500g",
-          "price": 599
+          "price": 599,
+          "stock": 10
         },
         {
           "weight": "1kg",
-          "price": 1099
+          "price": 1099,
+          "stock": 10
         }
       ]
     },
@@ -242,11 +281,13 @@
       "weights": [
         {
           "weight": "250g",
-          "price": 1399
+          "price": 1399,
+          "stock": 10
         },
         {
           "weight": "500g",
-          "price": 2499
+          "price": 2499,
+          "stock": 10
         }
       ]
     },
@@ -258,11 +299,13 @@
       "weights": [
         {
           "weight": "500g",
-          "price": 2299
+          "price": 2299,
+          "stock": 10
         },
         {
           "weight": "1kg",
-          "price": 4199
+          "price": 4199,
+          "stock": 10
         }
       ]
     },
@@ -274,11 +317,13 @@
       "weights": [
         {
           "weight": "250g",
-          "price": 899
+          "price": 899,
+          "stock": 10
         },
         {
           "weight": "500g",
-          "price": 1599
+          "price": 1599,
+          "stock": 10
         }
       ]
     },
@@ -290,11 +335,13 @@
       "weights": [
         {
           "weight": "60 Capsules",
-          "price": 799
+          "price": 799,
+          "stock": 10
         },
         {
           "weight": "120 Capsules",
-          "price": 1399
+          "price": 1399,
+          "stock": 10
         }
       ]
     },
@@ -306,11 +353,13 @@
       "weights": [
         {
           "weight": "6 Bars Pack",
-          "price": 699
+          "price": 699,
+          "stock": 10
         },
         {
           "weight": "12 Bars Pack",
-          "price": 1299
+          "price": 1299,
+          "stock": 10
         }
       ]
     }
@@ -343,7 +392,7 @@
         "phone": "1234567890",
         "address": "asdfghjkl"
       },
-      "status": "Order Placed",
+      "status": "Delivered",
       "createdAt": "2026-01-28T09:27:37.360Z"
     },
     {
@@ -365,7 +414,7 @@
         "phone": "1234567890",
         "address": "qwertyuiop"
       },
-      "status": "Order Placed",
+      "status": "Delivered",
       "createdAt": "2026-01-28T10:05:51.198Z"
     },
     {
@@ -399,7 +448,7 @@
         }
       ],
       "total": 2798,
-      "status": "Order Placed",
+      "status": "Out for Delivery",
       "createdAt": "2026-01-31T06:05:20.173Z"
     },
     {
@@ -433,7 +482,7 @@
         }
       ],
       "total": 2798,
-      "status": "Order Placed",
+      "status": "Cancelled",
       "createdAt": "2026-01-31T06:05:51.818Z"
     },
     {
@@ -469,6 +518,262 @@
       "total": 2798,
       "status": "Order Placed",
       "createdAt": "2026-01-31T09:08:50.685Z"
+    },
+    {
+      "id": "d9ad",
+      "userId": "1066",
+      "customer": {
+        "name": "uyjy",
+        "phone": "+9898",
+        "address": "uygu6ed"
+      },
+      "items": [
+        {
+          "id": "644f",
+          "userId": "1066",
+          "productId": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        },
+        {
+          "id": "fa58",
+          "userId": "1066",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 2
+        }
+      ],
+      "total": 3697,
+      "status": "Order Placed",
+      "createdAt": "2026-02-02T07:32:10.785Z"
+    },
+    {
+      "id": "6e32",
+      "userId": "ffb1",
+      "customer": {
+        "name": "bgjhmgcbvb",
+        "phone": "1234567890",
+        "address": "asdfghjkl;'"
+      },
+      "items": [
+        {
+          "id": "8179",
+          "userId": "ffb1",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 1
+        },
+        {
+          "id": "3c7e",
+          "userId": "ffb1",
+          "productId": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "2kg",
+          "price": 5999,
+          "qty": 1
+        }
+      ],
+      "total": 6898,
+      "status": "Out for Delivery",
+      "createdAt": "2026-02-02T10:20:52.092Z"
+    },
+    {
+      "id": "5b42",
+      "userId": "ffb1",
+      "customer": {
+        "name": "Anjal",
+        "phone": "8877665544",
+        "address": "kannur"
+      },
+      "items": [
+        {
+          "id": "988f",
+          "userId": "ffb1",
+          "productId": "1",
+          "title": "Gold Standard Whey Protein",
+          "image": "/products/shopping.webp",
+          "weight": "500g",
+          "price": 1899,
+          "qty": 1
+        }
+      ],
+      "total": 1899,
+      "status": "Out for Delivery",
+      "createdAt": "2026-02-03T06:17:23.392Z"
+    },
+    {
+      "id": "f2eb",
+      "userId": "ffb1",
+      "customer": {
+        "name": "qwerty",
+        "phone": "1234567890",
+        "address": "qwertyuiop"
+      },
+      "items": [
+        {
+          "id": "1b29",
+          "userId": "ffb1",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 1
+        }
+      ],
+      "total": 899,
+      "status": "Delivered",
+      "createdAt": "2026-02-03T06:53:52.546Z"
+    },
+    {
+      "id": "1aad",
+      "userId": "ffb1",
+      "customer": {
+        "name": "knk",
+        "phone": "kjnk",
+        "address": "knk"
+      },
+      "items": [
+        {
+          "id": "e0e1",
+          "userId": "ffb1",
+          "productId": "3",
+          "title": "Mass Gainer",
+          "image": "/products/download.jpg",
+          "weight": "1kg",
+          "price": 2499,
+          "qty": 1
+        }
+      ],
+      "total": 2499,
+      "status": "Order Placed",
+      "createdAt": "2026-02-03T07:47:39.571Z"
+    },
+    {
+      "id": "5f7e",
+      "userId": "1066",
+      "customer": {
+        "name": "qwrty",
+        "phone": "1234567890",
+        "address": "qwertyuiop"
+      },
+      "items": [
+        {
+          "id": "bdc8",
+          "userId": "1066",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 2
+        },
+        {
+          "id": "7160",
+          "userId": "1066",
+          "productId": "8",
+          "title": "Pre Workout Booster",
+          "image": "/products/B.webp",
+          "weight": "250g",
+          "price": 1799,
+          "qty": 1
+        }
+      ],
+      "total": 3597,
+      "status": "Order Placed",
+      "createdAt": "2026-02-03T08:03:29.607Z"
+    },
+    {
+      "id": "dd5c",
+      "userId": "1066",
+      "customer": {
+        "name": "1234567890",
+        "phone": "qwertyuio",
+        "address": "qwertyuiop"
+      },
+      "items": [
+        {
+          "id": "b076",
+          "userId": "1066",
+          "productId": "7",
+          "title": "BCAA Energy Drink",
+          "image": "/products/a.jpg",
+          "weight": "250g",
+          "price": 1499,
+          "qty": 1
+        }
+      ],
+      "total": 1499,
+      "status": "Order Placed",
+      "createdAt": "2026-02-03T08:54:02.171Z"
+    },
+    {
+      "id": "0c75",
+      "userId": "1066",
+      "customer": {
+        "name": "dfghjkl;'",
+        "phone": "1234567890",
+        "address": "asdfghjkl;"
+      },
+      "items": [
+        {
+          "id": "6356",
+          "userId": "1066",
+          "productId": "3",
+          "title": "Mass Gainer",
+          "image": "/products/download.jpg",
+          "weight": "1kg",
+          "price": 2499,
+          "qty": 1
+        }
+      ],
+      "total": 2499,
+      "status": "Order Placed",
+      "createdAt": "2026-02-03T09:00:58.036Z"
+    },
+    {
+      "id": "b5f3",
+      "userId": "510c",
+      "customer": {
+        "name": "jhon",
+        "phone": "1234567890",
+        "address": "jhon"
+      },
+      "items": [
+        {
+          "id": "afce",
+          "userId": "510c",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "100g",
+          "price": 899,
+          "qty": 2
+        },
+        {
+          "id": "1513",
+          "userId": "510c",
+          "productId": "2",
+          "title": "Creatine Monohydrate",
+          "image": "/products/shoppin.webp",
+          "weight": "250g",
+          "price": 1599,
+          "qty": 1
+        }
+      ],
+      "total": 3397,
+      "status": "Placed",
+      "createdAt": "2026-02-03T10:54:03.189Z"
     }
   ]
 }

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
 import API from "../services/API"
 import { StoreContext } from "../context/StoreContext"
-import { FaHeart } from "react-icons/fa"
+
 
 const ProductDetails = () => {
   const { id } = useParams()
@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const [selectedWeight, setSelectedWeight] = useState(null)
   const [activeImage, setActiveImage] = useState("")
 
-  // 🔄 Fetch product
+  //  Fetch product
   useEffect(() => {
     API.get(`/products/${id}`).then(res => {
       setProduct(res.data)
@@ -103,13 +103,13 @@ const ProductDetails = () => {
 
             <button
               onClick={() => toggleWishlist(product)}
-              className={`border px-5 py-3 rounded flex items-center gap-2 transition ${
+              className={`border px-5 py-3 rounded flex items-center gap-2 transition hover:bg-red-600 hover:text-white hover:border-white ${
                 isWishlisted
                   ? "text-red-500 border-red-500"
                   : "border-black"
               }`}
             >
-              <FaHeart />
+              
               {isWishlisted
                 ? "Wishlisted"
                 : "Add to Wishlist"}

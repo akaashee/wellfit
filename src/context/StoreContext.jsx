@@ -84,6 +84,10 @@ const StoreProvider = ({ children }) => {
 
   /*  ADD TO CART */
   const addToCart = async (product, selectedWeight) => {
+    if (!userId) {
+      toast.error("Login to add items to cart")
+      return
+    }
     const existing = cart.find(
       i =>
         i.productId === product.id &&
@@ -153,13 +157,16 @@ const StoreProvider = ({ children }) => {
   const removeFromCart = async (id) => {
     await axios.delete(`${BASE_URL}/cart/${id}`)
     setCart(prev => prev.filter(i => i.id !== id))
-    toast.success('Removed from cart')
+    toast.warning('Removed from cart')
   }
 
   /*  WISHLIST — ADD ONLY ONCE */
   const toggleWishlist = async (product) => {
 
-    if (!userId) return
+    if (!userId) {
+      toast.error("Login to manage wishlist")
+      return
+    }
 
 
     //  STRICT CHECK (state + DB safe)

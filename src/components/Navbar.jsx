@@ -1,22 +1,22 @@
 import { Link, useNavigate } from "react-router-dom"
-import {  useState } from "react"
-import {  useStore } from "../context/StoreContext"
+import { useState } from "react"
+import { useStore } from "../context/StoreContext"
 import {
   FaShoppingCart,
   FaHeart,
   FaUser,
   FaSearch
 } from "react-icons/fa"
-import { useAuth } from "../context/AuthContext"
+
 
 const Navbar = () => {
   const navigate = useNavigate()
   const isAuth = Boolean(localStorage.getItem("isAuth"))
-  
+
 
   const { cart, wishlist, clearStore } = useStore()
 
-  
+
 
   const [search, setSearch] = useState("")
 
@@ -59,8 +59,8 @@ const Navbar = () => {
 
         {isAuth ? (
           <div className="flex items-center gap-6">
+            <Link to="/products" className="flex items-end">Products</Link>
 
-            <Link to="/products">Products</Link>
 
             <Link to="/wishlist" className="relative">
               <FaHeart size={20} />
@@ -93,12 +93,16 @@ const Navbar = () => {
 
           </div>
         ) : (
-          <Link
+          <div className="flex gap-3 items-center">
+            <Link to="/products" className="flex items-end">Products</Link>
+            <Link
             to="/login"
             className="hover:text-green-500 hover:bg-white px-4 py-1.5 rounded"
           >
             Login
           </Link>
+          
+          </div>
         )}
       </div>
     </nav>
