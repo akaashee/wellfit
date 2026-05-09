@@ -54,94 +54,132 @@ const EditProduct = () => {
     return <p className="text-center mt-10">Loading product...</p>
   }
 
-  return (
-    <div className="max-w-2xl bg-white p-6 shadow rounded">
-      <h1 className="text-xl font-bold mb-6">
+return (
+  <div className="max-w-3xl mx-auto text-black">
+
+    <div className="bg-white rounded-2xl shadow-md p-10">
+
+      <h1 className="text-2xl font-semibold text-black mb-8">
         Edit Product
       </h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+
         {/* TITLE */}
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          placeholder="Product Title"
-          required
-        />
+        <div>
+          <label className="block mb-2 text-sm font-medium text-gray-600">
+            Product Title
+          </label>
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:border-black transition"
+            placeholder="Product Title"
+            required
+          />
+        </div>
 
         {/* IMAGE */}
-        <input
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          placeholder="Image URL"
-          required
-        />
-
-        {image && (
-          <img
-            src={image}
-            alt="Preview"
-            className="w-32 h-32 object-cover border rounded"
+        <div>
+          <label className="block mb-2 text-sm font-medium text-gray-600">
+            Product Image URL
+          </label>
+          <input
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            className="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:border-black transition"
+            placeholder="Image URL"
+            required
           />
-        )}
+
+          {image && (
+            <div className="mt-4">
+              <img
+                src={image}
+                alt="Preview"
+                className="w-32 h-32 object-cover border border-gray-200 rounded-lg"
+              />
+            </div>
+          )}
+        </div>
 
         {/* DESCRIPTION */}
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-full border px-3 py-2 rounded"
-          rows={4}
-        />
+        <div>
+          <label className="block mb-2 text-sm font-medium text-gray-600">
+            Description
+          </label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full border border-gray-300 px-4 py-3 rounded-md focus:outline-none focus:border-black transition"
+            rows={4}
+          />
+        </div>
 
         {/* WEIGHTS */}
-        {weights.map((w, index) => (
-          <div key={index} className="flex gap-3 items-center">
-            <input
-              value={w.weight}
-              onChange={(e) =>
-                updateWeight(index, "weight", e.target.value)
-              }
-              className="border px-3 py-2 rounded w-1/2"
-              placeholder="Weight"
-            />
+        <div>
+          <label className="block mb-3 text-sm font-medium text-gray-600">
+            Weights & Prices
+          </label>
 
-            <input
-              type="number"
-              value={w.price}
-              onChange={(e) =>
-                updateWeight(index, "price", e.target.value)
-              }
-              className="border px-3 py-2 rounded w-1/2"
-              placeholder="Price"
-            />
+          <div className="space-y-3">
+            {weights.map((w, index) => (
+              <div
+                key={index}
+                className="flex gap-3 items-center"
+              >
+                <input
+                  value={w.weight}
+                  onChange={(e) =>
+                    updateWeight(index, "weight", e.target.value)
+                  }
+                  className="border border-gray-300 px-4 py-3 rounded-md w-1/2 focus:outline-none focus:border-black transition"
+                  placeholder="Weight"
+                />
 
-            <button
-              type="button"
-              onClick={() => removeWeight(index)}
-              className="text-red-600"
-            >
-              ✕
-            </button>
+                <input
+                  type="number"
+                  value={w.price}
+                  onChange={(e) =>
+                    updateWeight(index, "price", e.target.value)
+                  }
+                  className="border border-gray-300 px-4 py-3 rounded-md w-1/2 focus:outline-none focus:border-black transition"
+                  placeholder="Price"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => removeWeight(index)}
+                  className="px-3 py-2 text-black rounded-md border border-gray-300 hover:bg-black hover:text-white transition"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
 
-        <button
-          type="button"
-          onClick={addWeight}
-          className="text-blue-600 text-sm"
-        >
-          + Add weight
-        </button>
+          <button
+            type="button"
+            onClick={addWeight}
+            className="mt-4 text-sm font-medium text-black hover:underline"
+          >
+            + Add weight
+          </button>
+        </div>
 
         {/* SUBMIT */}
-        <button className="bg-black text-white px-6 py-2 rounded">
-          Update Product
-        </button>
+        <div className="pt-6">
+          <button className="bg-black text-white px-8 py-3 rounded-md font-medium hover:opacity-85 transition">
+            Update Product
+          </button>
+        </div>
+
       </form>
     </div>
-  )
+
+  </div>
+)
+
 }
 
 export default EditProduct

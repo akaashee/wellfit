@@ -20,7 +20,7 @@ const Orders = () => {
 
   useEffect(() => {
     API.get("/orders")
-      .then(res => setOrders(res.data))
+      .then(res => setOrders(res.data.reverse()))
       .finally(() => setLoading(false))
   }, [])
 
@@ -60,160 +60,168 @@ const Orders = () => {
     return <p className="text-center mt-10">Loading orders...</p>
   }
 
-  return (
-    <div className="space-y-6">
-      {/* HEADER */}
-      <div className="flex justify-between items-start">
-        <div>
-          <h1 className="text-3xl font-bold">Order Management</h1>
-          <p className="text-gray-500 mt-1">
-            Manage and track customer orders
-          </p>
-        </div>
+ return (
+  <div className="space-y-8">
 
-        {/* STATUS FILTER */}
-        <div className="relative">
-          <FunnelIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
-          <select
-            value={status}
-            onChange={e => setStatus(e.target.value)}
-            className="pl-10 pr-4 py-2 border rounded-lg"
-          >
-            <option value="All">All Status</option>
-            <option value="Order Placed">Order Placed</option>
-            <option value="Out for Delivery">Out for Delivery</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </div>
+    {/* HEADER */}
+    <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+
+      <div>
+        <h1 className="text-2xl font-semibold text-white">
+          Order Management
+        </h1>
+        <p className="text-gray-400 mt-1 text-sm">
+          Manage and track customer orders
+        </p>
       </div>
 
-      {/* CARD */}
-      <div className="bg-white rounded-2xl shadow">
-        {/* SEARCH */}
-        <div className="p-4 border-b">
-          <div className="relative max-w-md">
-            <MagnifyingGlassIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by Order ID or User ID..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg"
-            />
-          </div>
-        </div>
-
-        {/* TABLE */}
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 text-sm text-gray-500">
-              <tr>
-                <th className="p-4 text-left">Order ID</th>
-                <th className="p-4">Date</th>
-                <th className="p-4">Customer</th>
-                <th className="p-4">Status</th>
-                <th className="p-4">Total</th>
-                <th className="p-4 text-right">Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {filteredOrders.map(order => (
-                <tr key={order.id} className="border-t hover:bg-gray-50">
-                  {/* ORDER ID */}
-                  <td className="p-4 font-medium">
-                    #{order.id}
-                  </td>
-
-                  {/* DATE */}
-                  <td className="p-4 text-sm text-gray-600">
-                    <div>{new Date(order.createdAt).toLocaleDateString("en-IN")}</div>
-                    <div className="text-xs">
-                      {new Date(order.createdAt).toLocaleTimeString("en-IN")}
-                    </div>
-                  </td>
-
-                  {/* CUSTOMER */}
-                  <td className="p-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center font-semibold text-blue-700">
-                        {order.userId?.slice(0, 2).toUpperCase()}
-                      </div>
-                      <div>
-                        <p className="font-medium">
-                          User {order.userId}
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          {order.items?.length || 0} items
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-
-                  {/* STATUS */}
-                  <td className="p-4 text-center">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      order.status === "Delivered"
-                        ? "bg-green-100 text-green-700"
-                        : order.status === "Shipped"
-                        ? "bg-purple-100 text-purple-700"
-                        : order.status === "Cancelled"
-                        ? "bg-red-100 text-red-700"
-                        : "bg-gray-100 text-gray-700"
-                    }`}>
-                      {order.status}
-                    </span>
-                  </td>
-
-                  {/* TOTAL */}
-                  <td className="p-4 font-semibold">
-                    ₹{order.total}
-                  </td>
-
-                  {/* ACTIONS */}
-                  <td className="p-4 text-right">
-                    <div className="flex justify-end gap-4">
-                      {/* VIEW */}
-                      <Link
-                        to={`/admin/orders/${order.id}`}
-                        className="text-gray-500 hover:text-blue-600"
-                      >
-                        <EyeIcon className="w-5 h-5" />
-                      </Link>
-
-                      {/* DELETE */}
-                      <button
-                        onClick={() => openDeleteModal(order)}
-                        className="text-gray-500 hover:text-red-600"
-                      >
-                        <TrashIcon className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-
-              {filteredOrders.length === 0 && (
-                <tr>
-                  <td colSpan="6" className="p-6 text-center text-gray-500">
-                    No orders found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+      {/* STATUS FILTER */}
+      <div className="relative">
+        <FunnelIcon className="w-5 h-5 absolute left-4 top-3.5 text-gray-400" />
+        <select
+          value={status}
+          onChange={e => setStatus(e.target.value)}
+          className="text-black pl-11 pr-6 py-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:border-black transition text-sm"
+        >
+          <option value="All">All Status</option>
+          <option value="Order Placed">Order Placed</option>
+          <option value="Out for Delivery">Out for Delivery</option>
+          <option value="Delivered">Delivered</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
       </div>
 
-      {/* DELETE MODAL */}
-      <DeleteOrderModal
-        open={showDeleteModal}
-        onClose={() => setShowDeleteModal(false)}
-        onConfirm={confirmDeleteOrder}
-      />
     </div>
-  )
+
+    {/* CARD */}
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+
+      {/* SEARCH */}
+      <div className="p-6 border-b border-gray-200">
+        <div className="relative max-w-md">
+          <MagnifyingGlassIcon className="w-5 h-5 absolute left-4 top-3.5 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search by Order ID or User ID..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-md focus:outline-none text-black focus:border-black transition text-sm"
+          />
+        </div>
+      </div>
+
+      {/* TABLE */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+
+          <thead className="bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th className="p-4 text-left">Order ID</th>
+              <th className="p-4 text-left">Date</th>
+              <th className="p-4 text-left">Customer</th>
+              <th className="p-4 text-center">Status</th>
+              <th className="p-4 text-left">Total</th>
+              <th className="p-4 text-right">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {filteredOrders.map(order => (
+              <tr
+                key={order.id}
+                className="border-b border-gray-100 hover:bg-gray-50 transition"
+              >
+
+                {/* ORDER ID */}
+                <td className="p-4 font-medium text-black">
+                  #{order.id}
+                </td>
+
+                {/* DATE */}
+                <td className="p-4 text-gray-600">
+                  <div>
+                    {new Date(order.createdAt).toLocaleDateString("en-IN")}
+                  </div>
+                  <div className="text-xs text-gray-400">
+                    {new Date(order.createdAt).toLocaleTimeString("en-IN")}
+                  </div>
+                </td>
+
+                {/* CUSTOMER */}
+                <td className="p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center font-semibold text-black text-xs">
+                      {order.userId?.slice(0, 2).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-medium text-black">
+                        User {order.userId}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {order.items?.length || 0} items
+                      </p>
+                    </div>
+                  </div>
+                </td>
+
+                {/* STATUS */}
+                <td className="p-4 text-center">
+                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-black">
+                    {order.status}
+                  </span>
+                </td>
+
+                {/* TOTAL */}
+                <td className="p-4 font-semibold text-black">
+                  ₹{order.total}
+                </td>
+
+                {/* ACTIONS */}
+                <td className="p-4 text-right">
+                  <div className="flex justify-end gap-3">
+
+                    <Link
+                      to={`/admin/orders/${order.id}`}
+                      className="p-2 border border-gray-200 rounded-md hover:bg-black hover:text-white transition"
+                    >
+                      <EyeIcon className="text-black hover:text-white w-5 h-5" />
+                    </Link>
+
+                    <button
+                      onClick={() => openDeleteModal(order)}
+                      className="p-2 border border-gray-200 rounded-md hover:bg-black hover:text-white transition"
+                    >
+                      <TrashIcon className="text-black hover:text-white w-5 h-5" />
+                    </button>
+
+                  </div>
+                </td>
+
+              </tr>
+            ))}
+
+            {filteredOrders.length === 0 && (
+              <tr>
+                <td colSpan="6" className="p-10 text-center text-gray-400">
+                  No orders found
+                </td>
+              </tr>
+            )}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* DELETE MODAL */}
+    <DeleteOrderModal
+      open={showDeleteModal}
+      onClose={() => setShowDeleteModal(false)}
+      onConfirm={confirmDeleteOrder}
+    />
+
+  </div>
+)
 }
 
 export default Orders

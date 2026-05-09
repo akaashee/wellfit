@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 export const AuthContext = createContext(null)
 
 export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const storedAuth = localStorage.getItem("isAuth")
@@ -27,6 +29,7 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data[0])
       localStorage.setItem("isAuth", "true")
       localStorage.setItem("user", JSON.stringify(res.data[0]))
+      if(res.data[0].role === "admin")  navigate("/admin", { replace: true })
       return true
     }
     return false

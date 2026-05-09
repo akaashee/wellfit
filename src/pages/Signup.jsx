@@ -69,41 +69,43 @@ const Signup = () => {
   }
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-50">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white border p-6 w-96 rounded"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Sign Up
-        </h2>
+  <div className="min-h-screen bg-black flex justify-center items-center px-6">
 
-        {/* ERROR MESSAGE */}
-        {error && (
-          <p className="text-red-500 text-sm mb-3 text-center">
-            {error}
-          </p>
-        )}
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-2xl shadow-xl w-full max-w-md p-10"
+    >
+      <h2 className="text-3xl font-semibold text-black text-center mb-8 tracking-wide">
+        CREATE ACCOUNT
+      </h2>
 
+      {/* ERROR MESSAGE */}
+      {error && (
+        <div className="mb-6 text-sm text-center text-black bg-gray-100 border border-gray-200 py-2 rounded-md">
+          {error}
+        </div>
+      )}
+
+      <div className="space-y-4">
         <input
           name="name"
           placeholder="Full Name"
           onChange={handleChange}
-          className="border p-2 mb-3 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
 
         <input
           name="email"
           placeholder="Email"
           onChange={handleChange}
-          className="border p-2 mb-3 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
 
         <input
           name="phone"
           placeholder="Phone Number"
           onChange={handleChange}
-          className="border p-2 mb-3 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
 
         <input
@@ -111,7 +113,7 @@ const Signup = () => {
           type="password"
           placeholder="Password"
           onChange={handleChange}
-          className="border p-2 mb-3 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
 
         <input
@@ -119,26 +121,31 @@ const Signup = () => {
           type="password"
           placeholder="Confirm Password"
           onChange={handleChange}
-          className="border p-2 mb-4 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
+      </div>
 
-        <button className="bg-black text-white w-full py-2 rounded hover:opacity-90">
-          Sign Up
-        </button>
+      <button
+        className="w-full mt-8 bg-black text-white py-3 rounded-md font-medium transition hover:opacity-85"
+      >
+        Sign Up
+      </button>
 
-        {/* LOGIN LINK */}
-        <p className="text-sm text-center mt-4">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-green-600 font-semibold hover:underline"
-          >
-            Login
-          </Link>
-        </p>
-      </form>
-    </div>
-  )
+      {/* LOGIN LINK */}
+      <p className="text-sm text-center text-gray-600 mt-6">
+        Already have an account?{" "}
+        <Link
+          to="/login"
+          className="text-black font-semibold hover:underline"
+        >
+          Login
+        </Link>
+      </p>
+
+    </form>
+
+  </div>
+)
 }
 
 export default Signup

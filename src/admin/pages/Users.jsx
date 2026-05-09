@@ -78,132 +78,136 @@ const Users = () => {
   }
 
   return (
-    <div className="space-y-6">
-      {/* HEADER */}
-      <div>
-        <h1 className="text-3xl font-bold">Users</h1>
-        <p className="text-gray-500 mt-1">
-          Manage registered users
-        </p>
-      </div>
+  <div className="space-y-8">
 
-      {/* CARD */}
-      <div className="bg-white rounded-2xl shadow">
-        {/* SEARCH */}
-        <div className="p-4 border-b">
-          <div className="relative max-w-md">
-            <MagnifyingGlassIcon className="w-5 h-5 absolute left-3 top-3 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search users..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border rounded-lg"
-            />
-          </div>
-        </div>
-
-        {/* TABLE */}
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 text-sm text-gray-500">
-              <tr>
-                <th className="p-4 text-left">User</th>
-                <th className="p-4">Role</th>
-                <th className="p-4">Status</th>
-                <th className="p-4 text-right">Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {filteredUsers.map(user => (
-                <tr key={user.id} className="border-t hover:bg-gray-50">
-                  {/* USER */}
-                  <td className="p-4">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-semibold">
-                        {user.name.charAt(0).toUpperCase()}
-                      </div>
-                      <div>
-                        <p className="font-medium">{user.name}</p>
-                        <p className="text-sm text-gray-500">
-                          {user.email}
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-
-                  {/* ROLE */}
-                  <td className="p-4 text-center">
-                    <span className={`px-3 py-1 rounded-full text-xs ${
-                      user.role === "admin"
-                        ? "bg-purple-100 text-purple-700"
-                        : "bg-gray-100 text-gray-700"
-                    }`}>
-                      {user.role}
-                    </span>
-                  </td>
-
-                  {/* STATUS */}
-                  <td className="p-4 text-center">
-                    <span className={`px-3 py-1 rounded-full text-xs ${
-                      user.status === "Blocked"
-                        ? "bg-red-100 text-red-700"
-                        : "bg-green-100 text-green-700"
-                    }`}>
-                      {user.status || "Active"}
-                    </span>
-                  </td>
-
-                  {/* ACTIONS */}
-                  <td className="p-4 text-right">
-                    <div className="flex justify-end gap-4">
-                      {/* BLOCK */}
-                      <button
-                        onClick={() => openBlockModal(user)}
-                        className="text-gray-500 hover:text-red-600"
-                      >
-                        <EnvelopeIcon className="w-5 h-5" />
-                      </button>
-
-                      {/* DELETE */}
-                      <button
-                        onClick={() => openDeleteModal(user)}
-                        className="text-gray-500 hover:text-red-600"
-                      >
-                        <TrashIcon className="w-5 h-5" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-
-              {filteredUsers.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="p-6 text-center text-gray-500">
-                    No users found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* MODALS */}
-      <BlockUserModal
-        open={showBlockModal}
-        onClose={() => setShowBlockModal(false)}
-        onConfirm={confirmBlockUser}
-      />
-
-      <DeleteUserModal
-        open={showDeleteModal}
-        onClose={() => setShowDeleteModal(false)}
-        onConfirm={confirmDeleteUser}
-      />
+    {/* HEADER */}
+    <div>
+      <h1 className="text-2xl font-semibold text-white">
+        Users
+      </h1>
+      <p className="text-gray-400 mt-1 text-sm">
+        Manage registered users
+      </p>
     </div>
-  )
+
+    {/* CARD */}
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+
+      {/* SEARCH */}
+      <div className="p-6 border-b border-gray-200">
+        <div className="relative max-w-md">
+          <MagnifyingGlassIcon className="w-5 h-5 absolute left-4 top-3.5 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search users..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-md focus:outline-none text-black focus:border-black transition"
+          />
+        </div>
+      </div>
+
+      {/* TABLE */}
+      <div className="overflow-x-auto">
+        <table className="w-full text-left">
+          <thead className="bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider text-gray-500">
+            <tr>
+              <th className="p-4">User</th>
+              <th className="p-4 text-center">Role</th>
+              <th className="p-4 text-center">Status</th>
+              <th className="p-4 text-right">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {filteredUsers.map(user => (
+              <tr
+                key={user.id}
+                className="border-b border-gray-100 hover:bg-gray-50 transition"
+              >
+                {/* USER */}
+                <td className="p-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center font-semibold text-black">
+                      {user.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div>
+                      <p className="font-medium text-black">
+                        {user.name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {user.email}
+                      </p>
+                    </div>
+                  </div>
+                </td>
+
+                {/* ROLE */}
+                <td className="p-4 text-center">
+                  <span className="px-3 py-1 rounded-full text-xs bg-gray-100 text-black font-medium">
+                    {user.role}
+                  </span>
+                </td>
+
+                {/* STATUS */}
+                <td className="p-4 text-center">
+                  <span className="px-3 py-1 rounded-full text-xs bg-gray-100 text-black font-medium">
+                    {user.status || "Active"}
+                  </span>
+                </td>
+
+                {/* ACTIONS */}
+                <td className="p-4 text-right">
+                  <div className="flex justify-end gap-4">
+
+                    {/* BLOCK */}
+                    <button
+                      onClick={() => openBlockModal(user)}
+                      className="p-2 rounded-md text-black border border-gray-200 hover:bg-black hover:text-white transition"
+                    >
+                      <EnvelopeIcon className="w-5 h-5" />
+                    </button>
+
+                    {/* DELETE */}
+                    <button
+                      onClick={() => openDeleteModal(user)}
+                      className="p-2 rounded-md text-black border border-gray-200 hover:bg-black hover:text-white transition"
+                    >
+                      <TrashIcon className="w-5 h-5" />
+                    </button>
+
+                  </div>
+                </td>
+              </tr>
+            ))}
+
+            {filteredUsers.length === 0 && (
+              <tr>
+                <td colSpan="4" className="p-8 text-center text-gray-400">
+                  No users found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* MODALS */}
+    <BlockUserModal
+      open={showBlockModal}
+      onClose={() => setShowBlockModal(false)}
+      onConfirm={confirmBlockUser}
+    />
+
+    <DeleteUserModal
+      open={showDeleteModal}
+      onClose={() => setShowDeleteModal(false)}
+      onConfirm={confirmDeleteUser}
+    />
+
+  </div>
+)
 }
 
 export default Users

@@ -18,84 +18,85 @@ const ProductCard = ({ product }) => {
   )
 
   return (
+  <div
+    className="
+      relative
+      bg-white
+      rounded-2xl
+      p-6
+      shadow-md
+      hover:shadow-xl
+      transition-all
+      duration-300
+    "
+  >
+    {/* WISHLIST ICON */}
+    <button
+      onClick={() => toggleWishlist(product)}
+      className={`absolute top-4 right-4 text-lg transition ${
+        isWishlisted ? "text-red-500" : "text-gray-400 hover:text-red-500"
+      }`}
+    >
+      <FaHeart />
+    </button>
+
+    {/* IMAGE */}
     <div
+      onClick={() => navigate(`/products/${product.id}`)}
+      className="cursor-pointer overflow-hidden rounded-xl mb-6"
+    >
+      <img
+        src={product.image}
+        alt={product.title}
+        className="
+          h-52
+          w-full
+          object-contain
+          transition-transform
+          duration-300
+          hover:scale-105
+        "
+      />
+    </div>
+
+    {/* DETAILS */}
+    <h3 className="font-semibold text-black text-base leading-snug mb-2">
+      {product.title}
+    </h3>
+
+    <p className="text-gray-500 text-sm mb-2">
+      {defaultWeight.weight}
+    </p>
+
+    <p className="font-bold text-lg text-black mb-6">
+      ₹{defaultWeight.price}
+    </p>
+
+    {/* BUTTON */}
+    <button
+      onClick={() =>
+        pathname === "/products"
+          ? addToCart(product, defaultWeight)
+          : navigate(`/products/${product.id}`)
+      }
       className="
-        relative
-        rounded-xl
-        p-4
+        w-full
+        py-3
         border
-        border-gray-400
+        border-black
+        text-black
+        rounded-lg
+        text-sm
+        font-medium
+        transition
+        hover:bg-black
+        hover:text-white
       "
     >
-      {/* WISHLIST ICON */}
-      <button
-        onClick={() => toggleWishlist(product)}
-        className={`absolute top-3 right-3 z-10 text-xl transition-colors ${
-          isWishlisted ? "text-red-500" : "text-gray-400"
-        }`}
-      >
-        <FaHeart />
-      </button>
-
-      {/* IMAGE */}
-      <div
-        onClick={() => navigate(`/products/${product.id}`)}
-        className="
-          cursor-pointer
-          overflow-hidden
-          rounded-lg
-        "
-      >
-        <img
-          src={product.image}
-          alt={product.title}
-          className="
-            h-48
-            w-full
-            object-contain
-            transition-transform
-            duration-300
-            ease-in-out
-            hover:scale-105
-          "
-        />
-      </div>
-
-      {/* DETAILS */}
-      <h3 className="font-bold text-lg mt-4 mb-1">
-        {product.title}
-      </h3>
-
-      <p className="text-gray-500 text-sm mb-2">
-        {defaultWeight.weight}
-      </p>
-
-      <p className="font-bold text-lg ">
-        ₹{defaultWeight.price}
-      </p>
-
-      {/* ADD TO CART */}
-      <button
-        onClick={() => pathname === "/products" ? addToCart(product, defaultWeight) : navigate(`/products/${product.id}`)}
-        className="
-          absolute
-          bottom-4
-          right-4
-          p-3
-          border
-          rounded-2xl
-          transition-all
-          duration-300
-          ease-in-out
-          hover:scale-110
-          hover:bg-black
-          hover:text-white
-        "
-      >
-        {pathname === "/products" ? "Add to Cart" : "View Details"}
-      </button>
-    </div>
-  )
+      {pathname === "/products" ? "Add to Cart" : "View Details"}
+    </button>
+  </div>
+)
 }
 
 export default ProductCard

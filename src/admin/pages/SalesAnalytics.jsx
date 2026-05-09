@@ -161,26 +161,28 @@ const SalesAnalytics = () => {
     .slice(0, 5)
 
   return (
-    <div className="space-y-10">
-      {/* ================= HEADER ================= */}
+    <div className="space-y-12">
+
+      {/* HEADER */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold">Sales Analytics</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="text-2xl font-semibold text-white">
+            Sales Analytics
+          </h1>
+          <p className="text-gray-400 mt-1 text-sm">
             Detailed insights into your store performance.
           </p>
         </div>
 
-        <div className="flex gap-2 bg-gray-100 p-1 rounded-lg">
+        <div className="flex gap-2 bg-[#1a1a1a] p-1 rounded-lg border border-gray-800">
           {[7, 30, 90].map(d => (
             <button
               key={d}
               onClick={() => setRange(d)}
-              className={`px-4 py-2 rounded-md text-sm font-medium ${
-                range === d
-                  ? "bg-white shadow text-blue-600"
-                  : "text-gray-500"
-              }`}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition ${range === d
+                  ? "bg-white text-black"
+                  : "text-gray-400 hover:bg-white hover:text-black"
+                }`}
             >
               Last {d} Days
             </button>
@@ -188,23 +190,31 @@ const SalesAnalytics = () => {
         </div>
       </div>
 
-      {/* ================= KPI ================= */}
+      {/* KPI */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard title="Total Revenue" value={`₹${totalRevenue}`} />
         <StatCard title="Total Orders" value={totalOrders} />
         <StatCard title="Avg Order Value" value={`₹${avgOrderValue}`} />
       </div>
 
-      {/* ================= REVENUE TREND ================= */}
-      <div className="bg-white rounded-2xl shadow p-6">
-        <h2 className="font-bold text-lg mb-4">Revenue Trend</h2>
+      {/* REVENUE TREND */}
+      <div className="bg-white rounded-2xl shadow-md p-8">
+        <h2 className="font-semibold text-black mb-6">
+          Revenue Trend
+        </h2>
 
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={revenueData}>
             <CartesianGrid strokeDasharray="3 6" />
             <XAxis dataKey="date" tickFormatter={formatDate} />
             <YAxis tickFormatter={formatCurrency} />
-            <Tooltip />
+
+            <Tooltip
+              contentStyle={{ backgroundColor: "#fff", border: "1px solid #ccc" }}
+              labelStyle={{ color: "#000" }}
+              itemStyle={{ color: "#2563eb" }}
+            />
+
             <Line
               type="monotoneX"
               dataKey="revenue"
@@ -216,11 +226,14 @@ const SalesAnalytics = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* ================= BOTTOM SECTION ================= */}
+      {/* BOTTOM SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
         {/* ORDER STATUS */}
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h2 className="font-bold text-lg mb-6">Order Status</h2>
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <h2 className="font-semibold text-black mb-6">
+            Order Status
+          </h2>
 
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
@@ -242,16 +255,10 @@ const SalesAnalytics = () => {
             </PieChart>
           </ResponsiveContainer>
 
-          <div className="flex justify-center gap-4 mt-4">
+          <div className="flex justify-center gap-6 mt-6 text-sm text-black">
             {orderStatusData.map(s => (
-              <span
-                key={s.name}
-                className="flex items-center gap-2 text-sm"
-              >
-                <span
-                  className="w-3 h-3 rounded-full"
-                  style={{ background: STATUS_COLORS[s.name] }}
-                />
+              <span key={s.name} className="flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full " style={{ background: STATUS_COLORS[s.name] }} />
                 {s.name}
               </span>
             ))}
@@ -259,26 +266,30 @@ const SalesAnalytics = () => {
         </div>
 
         {/* TOP SELLING PRODUCTS */}
-        <div className="bg-white rounded-2xl shadow p-6">
-          <h2 className="font-bold text-lg mb-4">
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <h2 className="font-semibold text-black mb-6">
             Top Selling Products
           </h2>
 
           <table className="w-full text-sm">
-            <thead className="text-gray-400 border-b">
+            <thead className="text-gray-500 border-b border-gray-200">
               <tr>
-                <th className="text-left py-2">Product Name</th>
-                <th className="text-center py-2">Units Sold</th>
-                <th className="text-right py-2">Revenue</th>
+                <th className="text-left py-3">Product Name</th>
+                <th className="text-center py-3">Units Sold</th>
+                <th className="text-right py-3">Revenue</th>
               </tr>
             </thead>
 
             <tbody>
               {topProducts.map((p, i) => (
-                <tr key={i} className="border-b last:border-none">
-                  <td className="py-3 font-medium">{p.title}</td>
-                  <td className="text-center">{p.units}</td>
-                  <td className="text-right font-semibold">
+                <tr key={i} className="border-b border-gray-100 last:border-none">
+                  <td className="py-4 font-medium text-black">
+                    {p.title}
+                  </td>
+                  <td className="text-center text-black">
+                    {p.units}
+                  </td>
+                  <td className="text-right font-semibold text-black">
                     ₹{p.revenue}
                   </td>
                 </tr>
@@ -286,6 +297,7 @@ const SalesAnalytics = () => {
             </tbody>
           </table>
         </div>
+
       </div>
     </div>
   )
@@ -296,8 +308,10 @@ export default SalesAnalytics
 /* ================= STAT CARD ================= */
 
 const StatCard = ({ title, value }) => (
-  <div className="bg-white rounded-2xl shadow p-6">
+  <div className="bg-white rounded-2xl shadow-md p-6">
     <p className="text-gray-500 text-sm">{title}</p>
-    <p className="text-3xl font-bold mt-2">{value}</p>
+    <p className="text-3xl font-semibold text-black mt-2">
+      {value}
+    </p>
   </div>
 )

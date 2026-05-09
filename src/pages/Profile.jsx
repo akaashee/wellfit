@@ -52,26 +52,33 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-10 px-4">
+  <div className="min-h-screen bg-black py-24">
+    <div className="max-w-5xl mx-auto px-6">
+
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">My Profile</h1>
+      <div className="flex justify-between items-center mb-10">
+        <h1 className="text-3xl font-semibold text-white tracking-wide">
+          MY PROFILE
+        </h1>
 
         {!isEditing && (
           <button
             onClick={() => setIsEditing(true)}
-            className="border px-4 py-1.5 rounded hover:bg-black hover:text-white transition"
+            className="border border-white text-white px-5 py-2 rounded-md hover:bg-white hover:text-black transition"
           >
             Edit Profile
           </button>
         )}
       </div>
 
-      {/* PROFILE INFO */}
-      <div className="border rounded p-6 space-y-4 bg-gray-50">
+      
+
+      {/* PROFILE CARD */}
+      <div className="bg-white rounded-2xl shadow-xl p-8 space-y-6">
+
         {/* NAME */}
         <div>
-          <label className="block text-sm text-gray-600 mb-1">
+          <label className="block text-sm text-gray-500 mb-1">
             Name
           </label>
           {isEditing ? (
@@ -80,16 +87,16 @@ const Profile = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              className="border rounded px-3 py-2 w-full"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
             />
           ) : (
-            <p className="font-medium">{user.name}</p>
+            <p className="font-medium text-black">{user.name}</p>
           )}
         </div>
 
         {/* EMAIL */}
         <div>
-          <label className="block text-sm text-gray-600 mb-1">
+          <label className="block text-sm text-gray-500 mb-1">
             Email
           </label>
           {isEditing ? (
@@ -98,16 +105,16 @@ const Profile = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="border rounded px-3 py-2 w-full"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
             />
           ) : (
-            <p className="font-medium">{user.email}</p>
+            <p className="font-medium text-black">{user.email}</p>
           )}
         </div>
 
         {/* PHONE */}
         <div>
-          <label className="block text-sm text-gray-600 mb-1">
+          <label className="block text-sm text-gray-500 mb-1">
             Phone
           </label>
           {isEditing ? (
@@ -116,10 +123,10 @@ const Profile = () => {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              className="border rounded px-3 py-2 w-full"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
             />
           ) : (
-            <p className="font-medium">
+            <p className="font-medium text-black">
               {user.phone || "—"}
             </p>
           )}
@@ -127,10 +134,10 @@ const Profile = () => {
 
         {/* ACTION BUTTONS */}
         {isEditing && (
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-4 pt-4">
             <button
               onClick={handleSaveProfile}
-              className="bg-black text-white px-5 py-2 rounded hover:opacity-90"
+              className="bg-black text-white px-6 py-3 rounded-md hover:opacity-85 transition"
             >
               Save
             </button>
@@ -144,7 +151,7 @@ const Profile = () => {
                   phone: user.phone || "",
                 })
               }}
-              className="border px-5 py-2 rounded"
+              className="border border-black text-black px-6 py-3 rounded-md hover:bg-black hover:text-white transition"
             >
               Cancel
             </button>
@@ -152,42 +159,48 @@ const Profile = () => {
         )}
       </div>
 
-      {/* ORDERS */}
-      <h2 className="text-2xl font-bold mt-10 mb-4">
-        My Orders
+      {/* ORDERS SECTION */}
+      <h2 className="text-2xl font-semibold text-white mt-16 mb-6">
+        MY ORDERS
       </h2>
 
-      {orders.length === 0 && <p>No orders yet</p>}
+      {orders.length === 0 && (
+        <p className="text-gray-400">No orders yet</p>
+      )}
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {orders.map(order => (
           <div
             key={order.id}
-            className="border p-4 rounded flex justify-between items-center"
+            className="bg-white rounded-xl shadow-md p-6 flex justify-between items-center"
           >
             <div>
-              <p className="font-medium">
+              <p className="font-semibold text-black">
                 Order #{order.id}
               </p>
+
               <p className="text-sm text-gray-500">
                 Status: {order.status}
               </p>
-              <p className="text-sm">
+
+              <p className="text-sm text-black mt-1">
                 Total: ₹{order.total}
               </p>
             </div>
 
             <Link
               to={`/order/${order.id}`}
-              className="text-green-600 hover:underline"
+              className="text-black font-medium hover:underline"
             >
               Track Order
             </Link>
           </div>
         ))}
       </div>
+
     </div>
-  )
+  </div>
+)
 }
 
 export default Profile

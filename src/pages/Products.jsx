@@ -98,124 +98,123 @@ const Products = () => {
     startIndex + PRODUCTS_PER_PAGE
   )
 
-  return (
-    <div className="min-h-screen py-14">
-      <div className="max-w-7xl mx-auto px-8">
+return (
+  <div className="min-h-screen bg-black text-white py-20">
+    <div className="max-w-7xl mx-auto px-6">
 
-        <h1 className="text-4xl font-extrabold text-center mb-6">
-          Products
+      {/* TITLE */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-wide">
+          PRODUCTS
         </h1>
 
-        {/* SEARCH INFO */}
         {search && (
-          <p className="text-center mb-4 text-gray-500">
-            Showing results for "<strong>{search}</strong>"
+          <p className="mt-4 text-gray-400 text-sm">
+            Showing results for 
+            <span className="text-white font-medium"> "{search}"</span>
           </p>
         )}
-
-        {/* FILTER BAR */}
-        <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
-
-          {/* CATEGORY */}
-          <select
-            value={category}
-            onChange={e => setCategory(e.target.value)}
-            className="border px-4 py-2 rounded"
-          >
-            <option value="All">All Categories</option>
-            <option value="Protein">Protein</option>
-            <option value="Performance">Performance</option>
-            <option value="Vitamins & Health">Vitamins & Health</option>
-            <option value="Nutrition">Nutrition</option>
-            <option value="Hydration">Hydration</option>
-          </select>
-
-          {/* SORT */}
-          <select
-            value={sortOrder}
-            onChange={e => setSortOrder(e.target.value)}
-            className="border px-4 py-2 rounded"
-          >
-            <option value="">Sort by Price</option>
-            <option value="low-high">Price: Low → High</option>
-            <option value="high-low">Price: High → Low</option>
-          </select>
-        </div>
-
-        {/* PRODUCTS GRID */}
-        {paginatedProducts.length > 0 ? (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-14">
-              {paginatedProducts.map(product => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
-              ))}
-            </div>
-
-            {/* PAGINATION */}
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-2 mt-14">
-
-                <button
-                  disabled={currentPage === 1}
-                  onClick={() =>
-                    setCurrentPage(prev => prev - 1)
-                  }
-                  className={`px-4 py-2 border rounded ${
-                    currentPage === 1
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:bg-black hover:text-white"
-                  }`}
-                >
-                  Prev
-                </button>
-
-                {[...Array(totalPages)].map((_, index) => {
-                  const page = index + 1
-                  return (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-4 py-2 border rounded ${
-                        currentPage === page
-                          ? "bg-black text-white"
-                          : "hover:bg-black hover:text-white"
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  )
-                })}
-
-                <button
-                  disabled={currentPage === totalPages}
-                  onClick={() =>
-                    setCurrentPage(prev => prev + 1)
-                  }
-                  className={`px-4 py-2 border rounded ${
-                    currentPage === totalPages
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:bg-black hover:text-white"
-                  }`}
-                >
-                  Next
-                </button>
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="text-center mt-20 text-gray-500">
-            <p className="text-xl font-semibold">
-              No products found 
-            </p>
-          </div>
-        )}
-
       </div>
+
+      {/* FILTER BAR */}
+      <div className="flex flex-wrap justify-between items-center gap-4 mb-14">
+
+        {/* CATEGORY */}
+        <select
+          value={category}
+          onChange={e => setCategory(e.target.value)}
+          className="bg-black border border-gray-700 text-white px-5 py-2 rounded-md focus:outline-none focus:border-white transition"
+        >
+          <option value="All" className="text-white">All Categories</option>
+          <option value="Protein" className="text-white">Protein</option>
+          <option value="Performance" className="text-white">Performance</option>
+          <option value="Vitamins & Health" className="text-white">Vitamins & Health</option>
+          <option value="Nutrition" className="text-white">Nutrition</option>
+          <option value="Hydration" className="text-white">Hydration</option>
+        </select>
+
+        {/* SORT */}
+        <select
+          value={sortOrder}
+          onChange={e => setSortOrder(e.target.value)}
+          className="bg-black border border-gray-700 text-white px-5 py-2 rounded-md focus:outline-none focus:border-white transition">
+          <option value="" className="text-white">Sort by Price</option>
+          <option value="low-high" className="text-white">Price: Low → High</option>
+          <option value="high-low" className="text-white">Price: High → Low</option>
+        </select>
+      </div>
+
+      {/* PRODUCTS GRID */}
+      {paginatedProducts.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
+            {paginatedProducts.map(product => (
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
+            ))}
+          </div>
+
+          {/* PAGINATION */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-3 mt-16">
+
+              <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(prev => prev - 1)}
+                className={`px-4 py-2 border border-gray-700 rounded-md transition ${
+                  currentPage === 1
+                    ? "opacity-40 cursor-not-allowed"
+                    : "hover:bg-white hover:text-black"
+                }`}
+              >
+                Prev
+              </button>
+
+              {[...Array(totalPages)].map((_, index) => {
+                const page = index + 1
+                return (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-4 py-2 border border-gray-700 rounded-md transition ${
+                      currentPage === page
+                        ? "bg-white text-black"
+                        : "hover:bg-white hover:text-black"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              })}
+
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage(prev => prev + 1)}
+                className={`px-4 py-2 border border-gray-700 rounded-md transition ${
+                  currentPage === totalPages
+                    ? "opacity-40 cursor-not-allowed"
+                    : "hover:bg-white hover:text-black"
+                }`}
+              >
+                Next
+              </button>
+
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="text-center mt-24 text-gray-500">
+          <p className="text-lg">
+            No products found
+          </p>
+        </div>
+      )}
+
     </div>
-  )
+  </div>
+)
 }
 
 export default Products

@@ -78,132 +78,150 @@ const Checkout = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4">
-      <h2 className="text-2xl font-bold mb-6">Checkout</h2>
+  <div className="min-h-screen bg-black py-24">
+    <div className="max-w-4xl mx-auto px-6">
 
-      {/*  CUSTOMER DETAILS */}
-      <div className="mb-6">
-        <input
-          placeholder="Name"
-          className="border p-2 mb-3 w-full"
-          onChange={e => setCustomer({ ...customer, name: e.target.value })}
-        />
+      <div className="bg-white rounded-2xl shadow-xl p-10">
 
-        <input
-          placeholder="Phone"
-          className="border p-2 mb-3 w-full"
-          onChange={e => setCustomer({ ...customer, phone: e.target.value })}
-        />
+        <h2 className="text-3xl font-semibold text-black mb-10 tracking-wide">
+          CHECKOUT
+        </h2>
 
-        <textarea
-          placeholder="Address"
-          className="border p-2 w-full"
-          onChange={e => setCustomer({ ...customer, address: e.target.value })}
-        />
-      </div>
-
-      {/*  PAYMENT METHODS */}
-      <div className="mb-6">
-        <h3 className="font-semibold mb-3">Payment Method</h3>
-
-        <label className="block mb-2">
+        {/* CUSTOMER DETAILS */}
+        <div className="mb-10 space-y-4">
           <input
-            type="radio"
-            value="COD"
-            checked={paymentMethod === "COD"}
-            onChange={e => setPaymentMethod(e.target.value)}
-          />{" "}
-          Cash on Delivery
-        </label>
-
-        <label className="block mb-2">
-          <input
-            type="radio"
-            value="UPI"
-            checked={paymentMethod === "UPI"}
-            onChange={e => setPaymentMethod(e.target.value)}
-          />{" "}
-          UPI
-        </label>
-
-        <label className="block">
-          <input
-            type="radio"
-            value="CARD"
-            checked={paymentMethod === "CARD"}
-            onChange={e => setPaymentMethod(e.target.value)}
-          />{" "}
-          Credit / Debit Card
-        </label>
-      </div>
-
-      {/*  UPI INPUT (ONLY WHEN UPI SELECTED) */}
-      {paymentMethod === "UPI" && (
-        <div className="mb-6 border p-4">
-          <h4 className="font-semibold mb-3">UPI Details</h4>
+            placeholder="Full Name"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
+            onChange={e => setCustomer({ ...customer, name: e.target.value })}
+          />
 
           <input
-            type="text"
-            placeholder="example@upi"
-            className="border p-2 w-full"
-            value={upiId}
-            onChange={e => setUpiId(e.target.value)}
+            placeholder="Phone Number"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
+            onChange={e => setCustomer({ ...customer, phone: e.target.value })}
+          />
+
+          <textarea
+            placeholder="Full Address"
+            className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition resize-none"
+            rows="3"
+            onChange={e => setCustomer({ ...customer, address: e.target.value })}
           />
         </div>
-      )}
 
-      {/*  CARD INPUTS (ONLY WHEN CARD SELECTED) */}
-      {paymentMethod === "CARD" && (
-        <div className="mb-6 border p-4">
-          <h4 className="font-semibold mb-3">Card Details</h4>
+        {/* PAYMENT METHOD */}
+        <div className="mb-10">
+          <h3 className="text-lg font-medium text-black mb-4">
+            Payment Method
+          </h3>
 
-          <input
-            type="text"
-            placeholder="Card Number"
-            maxLength={16}
-            className="border p-2 mb-3 w-full"
-            value={card.number}
-            onChange={e =>
-              setCard({ ...card, number: e.target.value.replace(/\D/g, "") })
-            }
-          />
+          <div className="space-y-3 text-black text-sm">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                value="COD"
+                checked={paymentMethod === "COD"}
+                onChange={e => setPaymentMethod(e.target.value)}
+              />
+              Cash on Delivery
+            </label>
 
-          <div className="flex gap-4">
-            <input
-              type="text"
-              placeholder="MM/YY"
-              maxLength={5}
-              className="border p-2 w-1/2"
-              value={card.expiry}
-              onChange={e =>
-                setCard({ ...card, expiry: e.target.value })
-              }
-            />
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                value="UPI"
+                checked={paymentMethod === "UPI"}
+                onChange={e => setPaymentMethod(e.target.value)}
+              />
+              UPI
+            </label>
 
-            <input
-              type="password"
-              placeholder="CVV"
-              maxLength={3}
-              className="border p-2 w-1/2"
-              value={card.cvv}
-              onChange={e =>
-                setCard({ ...card, cvv: e.target.value.replace(/\D/g, "") })
-              }
-            />
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                value="CARD"
+                checked={paymentMethod === "CARD"}
+                onChange={e => setPaymentMethod(e.target.value)}
+              />
+              Credit / Debit Card
+            </label>
           </div>
         </div>
-      )}
 
-      {/*  PLACE ORDER */}
-      <button
-        onClick={handlePay}
-        disabled={loading}
-        className="bg-black text-white px-6 py-3 w-full"
-      >
-        {loading ? "Processing..." : "Place Order"}
-      </button>
+        {/* UPI INPUT */}
+        {paymentMethod === "UPI" && (
+          <div className="mb-10 border border-gray-200 rounded-lg p-6">
+            <h4 className="font-medium text-black mb-4">
+              UPI Details
+            </h4>
+
+            <input
+              type="text"
+              placeholder="example@upi"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
+              value={upiId}
+              onChange={e => setUpiId(e.target.value)}
+            />
+          </div>
+        )}
+
+        {/* CARD INPUTS */}
+        {paymentMethod === "CARD" && (
+          <div className="mb-10 border border-gray-200 rounded-lg p-6">
+            <h4 className="font-medium text-black mb-4">
+              Card Details
+            </h4>
+
+            <input
+              type="text"
+              placeholder="Card Number"
+              maxLength={16}
+              className="w-full border border-gray-300 rounded-md px-4 py-3 text-black mb-4 focus:outline-none focus:border-black transition"
+              value={card.number}
+              onChange={e =>
+                setCard({ ...card, number: e.target.value.replace(/\D/g, "") })
+              }
+            />
+
+            <div className="flex gap-4">
+              <input
+                type="text"
+                placeholder="MM/YY"
+                maxLength={5}
+                className="w-1/2 border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
+                value={card.expiry}
+                onChange={e =>
+                  setCard({ ...card, expiry: e.target.value })
+                }
+              />
+
+              <input
+                type="password"
+                placeholder="CVV"
+                maxLength={3}
+                className="w-1/2 border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
+                value={card.cvv}
+                onChange={e =>
+                  setCard({ ...card, cvv: e.target.value.replace(/\D/g, "") })
+                }
+              />
+            </div>
+          </div>
+        )}
+
+        {/* PLACE ORDER BUTTON */}
+        <button
+          onClick={handlePay}
+          disabled={loading}
+          className="w-full bg-black text-white py-4 rounded-md font-medium transition hover:opacity-85 disabled:opacity-50"
+        >
+          {loading ? "Processing..." : "Place Order"}
+        </button>
+
+      </div>
     </div>
-  )
+  </div>
+)
 }
 
 export default Checkout

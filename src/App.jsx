@@ -19,7 +19,6 @@ import Footer from "./pages/Footer"
 import PaymentSuccess from "./pages/PaymentSuccess"
 
 /* ADMIN COMPONENTS */
-import AdminLogin from "./admin/pages/AdminLogin"
 import Dashboard from "./admin/pages/Dashboard"
 import AdminLayout from "./admin/components/AdminLayout"
 import ProductsAdmin from "./admin/pages/Products"
@@ -36,6 +35,7 @@ import SalesAnalytics from "./admin/pages/SalesAnalytics"
 import Users from "./admin/pages/Users"
 import OrderDetailsAdmin from "./admin/pages/OrderDetailsAdmin"
 import { useAuth } from "./context/AuthContext"
+
 
 /* USER PRIVATE ROUTE */
 const PrivateRoute = ({ children }) => {
@@ -74,6 +74,7 @@ function App() {
 
       <main>
         <Routes>
+          
           {/* ================= PUBLIC ROUTES ================= */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
@@ -149,7 +150,7 @@ function App() {
           />
 
           {/* ================= ADMIN ROUTES ================= */}
-          <Route path="/admin/login" element={<PublicRoute><AdminLogin /></PublicRoute>} />
+          
 
           <Route
             path="/admin"

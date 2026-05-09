@@ -38,75 +38,107 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-black/90 backdrop-blur">
-      <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between text-white">
+  <nav className="sticky top-0 z-50 bg-black border-b border-gray-800">
+  <div className="max-w-7xl mx-auto h-16 px-6 flex items-center justify-between text-white">
 
-        <Link to="/" className="text-2xl font-bold text-green-400">
-          WELLFIT
+    {/* Logo */}
+    <Link 
+      to="/" 
+      className="text-2xl font-bold tracking-widest text-white hover:opacity-80 hover:text-green-500 transition"
+    >
+      WELLFIT
+    </Link>
+
+    {/* Search */}
+    {isAuth && (
+      <div className="hidden md:flex items-center bg-gray-900 border border-gray-700 rounded-md px-4 py-1.5 focus-within:border-white transition">
+        <FaSearch className="text-gray-400 mr-2" />
+        <input
+          value={search}
+          onChange={handleSearch}
+          placeholder="Search products..."
+          className="bg-transparent py-1 w-56 text-white placeholder-gray-500 outline-none text-sm"
+        />
+      </div>
+    )}
+
+    {/* Right Side */}
+    {isAuth ? (
+      <div className="flex items-center gap-8 text-sm font-medium">
+
+        <Link 
+          to="/products" 
+          className="hover:text-gray-300 transition"
+        >
+          Products
         </Link>
 
-        {isAuth && (
-          <div className="hidden md:flex items-center bg-white rounded px-3">
-            <FaSearch className="text-gray-500 mr-2" />
-            <input
-              value={search}
-              onChange={handleSearch}
-              placeholder="Search products..."
-              className="py-1.5 w-56 text-black outline-none"
-            />
-          </div>
-        )}
+        {/* Wishlist */}
+        <Link 
+          to="/wishlist" 
+          className="relative hover:text-gray-300 transition"
+        >
+          <FaHeart size={18} />
+          {wishlist?.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-white text-black text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
+              {wishlist.length}
+            </span>
+          )}
+        </Link>
 
-        {isAuth ? (
-          <div className="flex items-center gap-6">
-            <Link to="/products" className="flex items-end">Products</Link>
+        {/* Cart */}
+        <Link 
+          to="/cart" 
+          className="relative hover:text-gray-300 transition"
+        >
+          <FaShoppingCart size={18} />
+          {cart.length > 0 && (
+            <span className="absolute -top-2 -right-2 bg-white text-black text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
+              {cart.length}
+            </span>
+          )}
+        </Link>
 
+        {/* Profile */}
+        <Link 
+          to="/profile"
+          className="hover:text-gray-300 transition"
+        >
+          <FaUser size={18} />
+        </Link>
 
-            <Link to="/wishlist" className="relative">
-              <FaHeart size={20} />
-              {wishlist?.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-xs px-1.5 rounded-full">
-                  {wishlist.length}
-                </span>
-              )}
-            </Link>
+        {/* Logout */}
+        <button
+          onClick={logout}
+          className="px-4 py-1.5 text-red-500 border border-red-700 rounded-md hover:bg-red-700 hover:text-white transition"
+        >
+          Logout
+        </button>
 
-            <Link to="/cart" className="relative">
-              <FaShoppingCart size={20} />
-              {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-green-500 text-xs px-1.5 rounded-full">
-                  {cart.length}
-                </span>
-              )}
-            </Link>
-
-            <Link to="/profile">
-              <FaUser size={20} />
-            </Link>
-
-            <button
-              onClick={logout}
-              className=" px-4 py-1.5 rounded hover:bg-white hover:text-red-500"
-            >
-              Logout
-            </button>
-
-          </div>
-        ) : (
-          <div className="flex gap-3 items-center">
-            <Link to="/products" className="flex items-end">Products</Link>
-            <Link
-            to="/login"
-            className="hover:text-green-500 hover:bg-white px-4 py-1.5 rounded"
-          >
-            Login
-          </Link>
-          
-          </div>
-        )}
       </div>
-    </nav>
-  )
+    ) : (
+      <div className="flex gap-6 items-center text-sm font-medium">
+
+        <Link 
+          to="/products" 
+          className="hover:text-gray-300 transition"
+        >
+          Products
+        </Link>
+
+        <Link
+          to="/login"
+          className="px-4 py-1.5 border border-gray-700 rounded-md hover:bg-white hover:text-black transition"
+        >
+          Login
+        </Link>
+
+      </div>
+    )}
+
+  </div>
+</nav>
+)
 }
 
 export default Navbar

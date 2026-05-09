@@ -53,30 +53,33 @@ const ProductsAdmin = () => {
   }
 
   return (
-    <div className="space-y-6">
+  <div className="space-y-8">
 
-      {/* HEADER */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Products</h1>
+    {/* HEADER */}
+    <div className="flex justify-between items-center">
+      <h1 className="text-2xl font-semibold text-white">
+        Products
+      </h1>
 
-        <Link
-          to="/admin/products/add"
-          className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800"
-        >
-          + Add Product
-        </Link>
-      </div>
+      <Link
+        to="/admin/products/add"
+        className="px-5 py-2 bg-white text-black rounded-md font-medium hover:opacity-85 transition"
+      >
+        + Add Product
+      </Link>
+    </div>
 
-      {/* TABLE */}
-      <div className="bg-white shadow rounded overflow-x-auto">
-        <table className="w-full text-center">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="p-3">Image</th>
-              <th className="p-3">Title</th>
-              <th className="p-3">Starting Price</th>
-              <th className="p-3">Stock</th>
-              <th className="p-3">Action</th>
+    {/* TABLE */}
+    <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left">
+          <thead className="bg-gray-50 border-b border-gray-200">
+            <tr className="text-sm text-gray-600 uppercase tracking-wider">
+              <th className="p-4">Image</th>
+              <th className="p-4">Title</th>
+              <th className="p-4">Starting Price</th>
+              <th className="p-4">Stock</th>
+              <th className="p-4 text-center">Action</th>
             </tr>
           </thead>
 
@@ -85,45 +88,47 @@ const ProductsAdmin = () => {
               const totalQty = getTotalQty(product)
 
               return (
-                <tr key={product.id} className="border-t">
-
-                  <td className="p-3">
+                <tr
+                  key={product.id}
+                  className="border-b border-gray-100 hover:bg-gray-50 transition"
+                >
+                  <td className="p-4">
                     <img
                       src={product.image}
                       alt={product.title}
-                      className="w-14 h-14 mx-auto rounded object-cover border"
+                      className="w-14 h-14 rounded-lg object-cover border border-gray-200"
                     />
                   </td>
 
-                  <td className="p-3 font-medium">
+                  <td className="p-4 font-medium text-black">
                     {product.title}
                   </td>
 
-                  <td className="p-3">
+                  <td className="p-4 text-black">
                     ₹{product.weights?.[0]?.price || "—"}
                   </td>
 
-                  <td className="p-3">
+                  <td className="p-4">
                     {totalQty > 0 ? (
-                      <span className="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm font-semibold">
+                      <span className="px-3 py-1 text-xs rounded-full bg-gray-100 text-black font-medium">
                         In Stock ({totalQty})
                       </span>
                     ) : (
-                      <span className="px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-semibold">
+                      <span className="px-3 py-1 text-xs rounded-full bg-gray-200 text-gray-600 font-medium">
                         Out of Stock (0)
                       </span>
                     )}
                   </td>
 
-                  <td className="p-3">
+                  <td className="p-4">
                     <div className="flex justify-center gap-3">
 
                       {/* VIEW */}
                       <Link
                         to={`/admin/products/view/${product.id}`}
-                        className="p-2 rounded border hover:bg-gray-100"
+                        className="p-2 text-black rounded-md border border-gray-200 hover:bg-black hover:text-white transition"
                       >
-                        <EyeIcon className="w-5 h-5 text-gray-700" />
+                        <EyeIcon className="w-5 h-5" />
                       </Link>
 
                       {/* DELETE */}
@@ -132,68 +137,67 @@ const ProductsAdmin = () => {
                           setSelectedProduct(product)
                           setShowModal(true)
                         }}
-                        className="p-2 rounded border border-red-500 hover:bg-red-500 group"
+                        className="p-2 rounded-mdm text-black border border-gray-200 hover:bg-black hover:text-white transition"
                       >
-                        <TrashIcon className="w-5 h-5 text-red-500 group-hover:text-white" />
+                        <TrashIcon className="w-5 h-5" />
                       </button>
 
                     </div>
                   </td>
-
                 </tr>
               )
             })}
           </tbody>
         </table>
       </div>
-
-      {/* ===================== PAGINATION CONTROLS ===================== */}
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2">
-
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(p => p - 1)}
-            className="px-3 py-1 border rounded disabled:opacity-50"
-          >
-            Prev
-          </button>
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-            <button
-              key={page}
-              onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 border rounded ${
-                page === currentPage
-                  ? "bg-black text-white"
-                  : "hover:bg-gray-200"
-              }`}
-            >
-              {page}
-            </button>
-          ))}
-
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(p => p + 1)}
-            className="px-3 py-1 border rounded disabled:opacity-50"
-          >
-            Next
-          </button>
-
-        </div>
-      )}
-
-      {/* ===================== DELETE MODAL ===================== */}
-      <DeleteModal
-        open={showModal}
-        onClose={() => setShowModal(false)}
-        onConfirm={handleDelete}
-        title={`Delete ${selectedProduct?.title}?`}
-      />
-
     </div>
-  )
-}
 
+    {/* PAGINATION */}
+    {totalPages > 1 && (
+      <div className="flex justify-center items-center gap-3 mt-6">
+
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(p => p - 1)}
+          className="px-4 py-1.5 border border-gray-300 rounded-md text-white disabled:opacity-40 hover:bg-white hover:text-black transition"
+        >
+          Prev
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+          <button
+            key={page}
+            onClick={() => setCurrentPage(page)}
+            className={`px-4 py-1.5 rounded-md border transition ${
+              page === currentPage
+                ? "bg-white text-black border-white"
+                : "border-gray-400 text-white hover:bg-white hover:text-black"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(p => p + 1)}
+          className="px-4 py-1.5 border border-gray-300 rounded-md text-white disabled:opacity-40 hover:bg-white hover:text-black transition"
+        >
+          Next
+        </button>
+
+      </div>
+    )}
+
+    {/* DELETE MODAL */}
+    <DeleteModal
+      open={showModal}
+      onClose={() => setShowModal(false)}
+      onConfirm={handleDelete}
+      title={`Delete ${selectedProduct?.title}?`}
+    />
+
+  </div>
+)
+}
 export default ProductsAdmin

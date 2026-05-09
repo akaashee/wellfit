@@ -46,7 +46,7 @@ const RevenueTooltip = ({ active, payload, label }) => {
 
   return (
     <div className="bg-white px-4 py-2 rounded shadow text-sm">
-      <p className="font-semibold">{formatDay(label)}</p>
+      <p className="font-semibold text-black">{formatDay(label)}</p>
       <p className="text-blue-600">
         Revenue: <strong>₹{payload[0].value}</strong>
       </p>
@@ -60,10 +60,10 @@ const Dashboard = () => {
   const [users, setUsers] = useState([])
   const [range, setRange] = useState("7")
   const [loading, setLoading] = useState(true)
-  const {user} = useAuth()
+  const { user } = useAuth()
 
-  
-  
+
+
 
   useEffect(() => {
     Promise.all([
@@ -146,20 +146,19 @@ const Dashboard = () => {
     .slice(0, 5)
 
   return (
-    <div className="space-y-10">
-      {/* ===== HEADER ===== */}
-      <div className="flex justify-between items-start">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            Dashboard Overview
-          </h1>
-          <p className="text-gray-500 mt-1">
-            Welcome back! Here's what's happening today.
-          </p>
-        </div>
+    <div className="space-y-12">
+
+      {/* HEADER */}
+      <div>
+        <h1 className="text-2xl font-semibold text-white">
+          Dashboard Overview
+        </h1>
+        <p className="text-gray-400 mt-1 text-sm">
+          Welcome back! Here's what's happening today.
+        </p>
       </div>
 
-      {/* ===== STATS ===== */}
+      {/* STATS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard title="Total Revenue" value={`₹${totalRevenue}`} />
         <StatCard title="Total Orders" value={orders.length} />
@@ -167,16 +166,19 @@ const Dashboard = () => {
         <StatCard title="Total Users" value={users.length} />
       </div>
 
-      {/* ===== CHARTS ===== */}
+      {/* CHARTS */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Revenue Analytics */}
-        <div className="lg:col-span-2 bg-white rounded-2xl shadow p-6">
-          <div className="flex justify-between mb-4">
-            <h2 className="font-bold text-lg">Revenue Analytics</h2>
+
+        {/* Revenue */}
+        <div className="lg:col-span-2 bg-white rounded-2xl shadow-md p-8">
+          <div className="flex justify-between mb-6">
+            <h2 className="font-semibold text-black">
+              Revenue Analytics
+            </h2>
             <select
               value={range}
               onChange={e => setRange(e.target.value)}
-              className="border px-3 py-1 rounded"
+              className="border text-black border-gray-300 px-3 py-1 rounded-md text-sm focus:outline-none focus:border-black"
             >
               <option value="7">Last 7 Days</option>
               <option value="30">Last 30 Days</option>
@@ -210,61 +212,81 @@ const Dashboard = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Orders Overview */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="font-bold text-lg mb-4">Orders Overview</h2>
+        {/* Orders */}
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <h2 className="font-semibold text-black mb-6">
+            Orders Overview
+          </h2>
 
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 6" />
               <XAxis dataKey="date" tickFormatter={formatDay} />
               <YAxis allowDecimals={false} />
-              <Tooltip />
+
+              <Tooltip
+                contentStyle={{ backgroundColor: "#fff", border: "1px solid #ccc" }}
+                labelStyle={{ color: "#000" }}
+                itemStyle={{ color: "#8b5cf6" }}
+              />
+
               <Bar dataKey="orders" fill="#8b5cf6" />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* ===== BOTTOM SECTION ===== */}
+      {/* BOTTOM SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
         {/* Top Customers */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="font-bold text-lg mb-4">Top Customers</h2>
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <h2 className="font-semibold text-black mb-6">
+            Top Customers
+          </h2>
+
           {topCustomers.map((c, i) => (
-            <div key={i} className="flex justify-between border-b py-3">
+            <div key={i} className="flex justify-between border-b border-gray-100 py-4">
               <div>
-                <p className="font-semibold">{c.name}</p>
+                <p className="font-semibold text-black">{c.name}</p>
                 <p className="text-sm text-gray-500">{c.email}</p>
               </div>
               <div className="text-right">
-                <p>{c.orders} Orders</p>
-                <p className="font-bold">₹{c.spent}</p>
+                <p className="text-black">{c.orders} Orders</p>
+                <p className="font-semibold text-black">₹{c.spent}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Recent Orders */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="font-bold text-lg mb-4">Recent Orders</h2>
+        <div className="bg-white rounded-2xl shadow-md p-8">
+          <h2 className="font-semibold text-black mb-6">
+            Recent Orders
+          </h2>
+
           {recentOrders.map(o => (
-            <div key={o.id} className="flex justify-between border-b py-3">
+            <div key={o.id} className="flex justify-between border-b border-gray-100 py-4">
               <div>
-                <p className="font-semibold">Order #{o.id}</p>
+                <p className="font-semibold text-black">
+                  Order #{o.id}
+                </p>
                 <p className="text-sm text-gray-500">
                   {new Date(o.createdAt).toLocaleDateString("en-IN")}
                 </p>
               </div>
               <div className="text-right">
-                <p className="font-bold">₹{o.total}</p>
-                <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">
+                <p className="font-semibold text-black">
+                  ₹{o.total}
+                </p>
+                <span className="text-xs px-3 py-1 rounded-full bg-gray-100 text-black">
                   {o.status}
                 </span>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </div>
   )
@@ -274,8 +296,10 @@ export default Dashboard
 
 /* ===== STAT CARD ===== */
 const StatCard = ({ title, value }) => (
-  <div className="bg-white rounded-xl shadow p-5">
+  <div className="bg-white rounded-2xl p-6 shadow-md">
     <p className="text-gray-500 text-sm">{title}</p>
-    <p className="text-2xl font-bold mt-1">{value}</p>
+    <p className="text-2xl font-semibold text-black mt-2">
+      {value}
+    </p>
   </div>
 )

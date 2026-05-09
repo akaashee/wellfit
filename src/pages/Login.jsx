@@ -31,20 +31,22 @@ const Login = () => {
 
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-50">
-      <form
-        onSubmit={handleLogin}
-        className="bg-white border p-6 w-96 rounded"
-      >
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Login
-        </h2>
+  <div className="min-h-screen bg-black flex justify-center items-center px-6">
 
+    <form
+      onSubmit={handleLogin}
+      className="bg-white rounded-2xl shadow-xl w-full max-w-md p-10"
+    >
+      <h2 className="text-3xl font-semibold text-black text-center mb-8 tracking-wide">
+        LOGIN
+      </h2>
+
+      <div className="space-y-4">
         <input
           name="email"
           placeholder="Email"
           onChange={handleChange}
-          className="border p-2 mb-3 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
 
         <input
@@ -52,26 +54,32 @@ const Login = () => {
           type="password"
           placeholder="Password"
           onChange={handleChange}
-          className="border p-2 mb-4 w-full"
+          className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:border-black transition"
         />
+      </div>
 
-        <button type="submit" className="bg-black text-white w-full py-2 rounded">
-          Login
-        </button>
+      <button
+        type="submit"
+        className="w-full mt-8 bg-black text-white py-3 rounded-md font-medium transition hover:opacity-85"
+      >
+        Login
+      </button>
 
-        {/*  SIGNUP LINK */}
-        <p className="text-sm text-center mt-4">
-          Don’t have an account?{" "}
-          <Link
-            to="/signup"
-            className="text-green-600 font-semibold hover:underline"
-          >
-            Sign Up
-          </Link>
-        </p>
-      </form>
-    </div>
-  )
+      {/* SIGNUP LINK */}
+      <p className="text-sm text-center text-gray-600 mt-6">
+        Don’t have an account?{" "}
+        <Link
+          to="/signup"
+          className="text-black font-semibold hover:underline"
+        >
+          Sign Up
+        </Link>
+      </p>
+
+    </form>
+
+  </div>
+)
 }
 
 export default Login
